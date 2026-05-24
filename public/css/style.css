@@ -1,0 +1,160 @@
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+}
+
+
+
+.navbar{
+    height: 5rem;
+}
+
+/* .navbar .navbar-brand{
+    font-size: 2rem;
+    margin-left: 1rem;
+}
+
+.navbar .nav-link{
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.navbar .nav-link:hover{
+    color: #ffc107;
+}
+
+.bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1030;
+} */
+
+.fa-compass {
+    color: #ffc107;
+    font-size: 2rem;
+}
+
+.nav-link{
+    color: #343a40 !important;
+}
+
+/*footer styles*/
+
+footer {
+    background-color: #343a40;
+    /* background-color: #f8f9fa; */
+    color: white;
+    padding: 1rem 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+footer a {
+    color: #ffc107;
+    text-decoration: none;
+}
+
+.f-info-links a{
+    text-decoration: none;
+    color: white;
+}
+
+.f-info-links a:hover{
+    color: #ffc107;
+    text-decoration: underline;
+}
+
+.f-info-links{
+    width: 100%;
+}
+
+.f-info-socials{
+    font-size: 1.25rem;
+}
+
+.f-info-socials i{
+    color: white;
+    margin: 0 1rem;
+    margin-bottom: 1rem;
+}
+
+/* card styles */
+
+/* .card{
+    border: none !important;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.15);
+    transition: 0.3s;
+    border-radius: 0.5rem !important;
+    padding-top: 1rem !important;
+    
+} */
+
+.card-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem !important;
+    
+}
+
+.card-img-top{
+    border-radius: 0.5rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    margin-top: 0.1rem !important;
+    
+}
+
+.card:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transform: scale(1.01);
+    transition: 0.3s;
+}
+
+.card-body{
+    padding: 0.25rem !important;
+}
+
+.card-text{
+    font-size: 1rem;
+    color: #555;
+    font-weight: 400 !important;
+}
+
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+
+/* new page */
+
+.add-btn{
+    background-color: #ffc107 !important;
+    color: black !important;
+    border: none !important;
+}
+
+.btns {
+    display: flex;
+    gap: 1rem;
+}
+
+.show-card{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}

@@ -1,0 +1,247 @@
+<!-- <% layout("/layouts/boilerplate") %>
+<%= success %>
+    <h3>All listings</h3>
+
+<style>
+    #filters {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;          
+    white-space: nowrap;        
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #ddd;
+    scroll-behavior: smooth;
+}
+
+#filters::-webkit-scrollbar {
+    display: none;             
+}
+
+.filter {
+    flex: 0 0 auto;             
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.filter:hover {
+    opacity: 1;
+}
+
+.filter p {
+    font-size: 0.85rem;
+}
+
+.filter:hover {
+    transform: translateY(-2px);
+    transition: 0.2s;
+}
+
+</style>
+    
+<div id="filters">
+    <div class="filter">
+        <div><i class="fa-solid fa-fire"></i></div>
+        <p>Trending </p>
+    </div>
+    <div class="filter">
+        <div><i class="fa-solid fa-bed"></i></div>
+        <p>Rooms</p>
+    </div>
+    <div class="filter">
+        <div><i class="fa-solid fa-mountain-city"></i></div>
+        <p>Iconic Cities</p>
+    </div>
+    <div class="filter">
+        <div><i class="fa-solid fa-mountain"></i></div>
+        <p>Mountains</p>
+    </div>
+    <div class="filter">
+        <div><i class="fa-solid fa-fort-awesome"></i></div>
+        <p>Castles</p>
+    </div>
+    <div class="filter">
+        <div><i class="fa-solid fa-person-swimming"></i></div>
+        <p>Pools</p>
+    </div>
+    <div class="filter">
+        <div><i class="fa-solid fa-campground"></i></div>
+        <p>Camping</p>
+    </div>
+    <div class="filter">
+        <div><i class="fa-solid fa-cow"></i></div>
+        <p>Farms</p>
+    </div>
+    <div class="filter">
+        <div><i class="fa-solid fa-snowflake"></i></div>
+        <p>Arctic Pools</p>
+    </div>
+    <div class="filter">
+        <div><i class="fa-solid fa-tree"></i></div>
+        <p>Treehouses</p>
+    </div>
+    <div class="filter">
+        <div><i class="fa-solid fa-igloo"></i></div>
+        <p>Igloos</p>
+    </div>
+    <div class="filter">
+        <div><i class="fa-solid fa-van-shuttle"></i></div>
+        <p>Vans</p>
+    </div>
+    <div class="filter">
+        <div><i class="fa-solid fa-ship"></i></div>
+        <p>Boats</p>
+    </div>
+    <div class="filter">
+        <div><i class="fa-solid fa-couch"></i></div>
+        <p>Unique Stays</p>
+    </div>
+    <div class="filter">
+        <div><i class="fa-solid fa-earth-americas"></i></div>
+        <p>Entire World</p>
+    </div>
+    <div class="filter">
+        <div><i class="fa-solid fa-house"></i></div>
+        <p>Homes</p>
+    </div>
+
+</div>    
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3 mt-3">
+    <% for(let listing of allListings){ %>
+    <div class="col">
+    <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
+        <div class="card h-100">
+            <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+
+            <div class="card-body">
+                <p class="card-text">
+                    <b><%= listing.title %></b>
+                    
+                    <br>
+                    &#8377; <%= listing.price.toLocaleString('en-IN') %> /night
+                </p>
+            </div>
+
+        </div>  
+    </a>
+</div>
+    <% } %> 
+</div>     -->
+
+
+<% layout("/layouts/boilerplate") %>
+
+<% if (success && success.length) { %>
+  <div class="alert alert-success alert-dismissible fade show mx-3 mt-2" role="alert">
+    <%= success %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+<style>
+  /* ── Filter bar ──
+     Key fixes:
+     - overflow-x: auto  → enables horizontal scroll
+     - flex-wrap: nowrap → PREVENTS wrapping (this was missing before)
+     - flex-shrink: 0 on .filter → items never squish
+  */
+  #filters {
+    display: flex;
+    flex-wrap: nowrap;          /* ✅ CRITICAL: stops wrapping */
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #ddd;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter {
+    flex: 0 0 auto;             /* ✅ never shrink or grow */
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s, transform 0.2s;
+    min-width: 56px;
+  }
+
+  .filter:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  .filter p {
+    font-size: 0.78rem;
+    margin-top: 4px;
+    margin-bottom: 0;
+  }
+
+  /* ── Cards ── */
+  .card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .listing-img {
+    height: 20rem;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .card-body {
+    padding: 0.75rem 0.5rem;
+  }
+</style>
+
+<h3 class="px-3 pt-3">All listings</h3>
+
+<div id="filters">
+  <div class="filter"><div><i class="fa-solid fa-fire"></i></div><p>Trending</p></div>
+  <div class="filter"><div><i class="fa-solid fa-bed"></i></div><p>Rooms</p></div>
+  <div class="filter"><div><i class="fa-solid fa-mountain-city"></i></div><p>Iconic Cities</p></div>
+  <div class="filter"><div><i class="fa-solid fa-mountain"></i></div><p>Mountains</p></div>
+  <div class="filter"><div><i class="fa-solid fa-fort-awesome"></i></div><p>Castles</p></div>
+  <div class="filter"><div><i class="fa-solid fa-person-swimming"></i></div><p>Pools</p></div>
+  <div class="filter"><div><i class="fa-solid fa-campground"></i></div><p>Camping</p></div>
+  <div class="filter"><div><i class="fa-solid fa-cow"></i></div><p>Farms</p></div>
+  <div class="filter"><div><i class="fa-solid fa-snowflake"></i></div><p>Arctic Pools</p></div>
+  <div class="filter"><div><i class="fa-solid fa-tree"></i></div><p>Treehouses</p></div>
+  <div class="filter"><div><i class="fa-solid fa-igloo"></i></div><p>Igloos</p></div>
+  <div class="filter"><div><i class="fa-solid fa-van-shuttle"></i></div><p>Vans</p></div>
+  <div class="filter"><div><i class="fa-solid fa-ship"></i></div><p>Boats</p></div>
+  <div class="filter"><div><i class="fa-solid fa-couch"></i></div><p>Unique Stays</p></div>
+  <div class="filter"><div><i class="fa-solid fa-earth-americas"></i></div><p>Entire World</p></div>
+  <div class="filter"><div><i class="fa-solid fa-house"></i></div><p>Homes</p></div>
+</div>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3 mt-3 px-2">
+  <% for(let listing of allListings){ %>
+    <div class="col">
+      <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <img
+            src="<%= listing.image.url %>"
+            class="listing-img"
+            alt="<%= listing.title %>"
+          >
+          <div class="card-body">
+            <p class="card-text mb-0"><b><%= listing.title %></b></p>
+            <p class="card-text text-muted small">&#8377; <%= listing.price.toLocaleString('en-IN') %> / night</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  <% } %>
+</div>

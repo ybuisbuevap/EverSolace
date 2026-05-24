@@ -1,0 +1,237 @@
+<!-- <style>
+  .btn-search {
+    background-color: #ffc107;
+    border: none;
+    color: white;
+  }
+</style>
+
+<nav class="navbar navbar-expand-md navbar-dark bottom border mb-4 sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+      
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <form class="d-flex" role="search">
+          <div class="input-group">
+            <input type="search" class="form-control me-2" placeholder="Search for a location...">
+            <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+        </form>
+      </div>
+
+      <div class="navbar-nav ms-auto d-flex align-items-center">
+        <a class="nav-link" href="/listings/new">WanderLust your Home</a>
+        <% if (!currUser) { %>
+          <a class="nav-link" href="/signup"><b>Sign Up</b></a>
+          <a class="nav-link" href="/login"><b>Log In</b></a>
+        <% } else { %>
+          <span class="navbar-text me-2">Welcome, <%= currUser.username %></span>
+          <a class="nav-link" href="/logout">Log Out</a>
+        <% } %>
+        
+      </div>
+    </div>
+  </div>
+</nav> -->
+
+
+
+<style>
+  .navbar {
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 16px;
+  }
+
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  /* ── Airbnb-style pill search ── */
+  .airbnb-search {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 999px;
+    padding: 6px 6px 6px 16px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s;
+    width: 100%;
+    max-width: 360px;
+    min-width: 0;
+  }
+
+  .airbnb-search:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  }
+
+  .airbnb-search span {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #222;
+    padding: 0 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .airbnb-search span.text-muted {
+    color: #888 !important;
+    font-weight: 400;
+  }
+
+  .airbnb-search .divider {
+    width: 1px;
+    height: 20px;
+    background-color: #ddd;
+    flex-shrink: 0;
+  }
+
+  .search-icon {
+    background-color: #ffc107;
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .search-icon:hover {
+    background-color: #e6a800;
+  }
+
+  /* ── Nav links ── */
+  .nav-link {
+    font-weight: 500;
+    color: #222 !important;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover {
+    color: #ffc107 !important;
+  }
+
+  .navbar-text {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* ── Center search wrapper ── */
+  .search-wrapper {
+    display: flex;
+    justify-content: center;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0 12px;
+  }
+
+  /* ── Shrink labels at mid-widths (split screen) ── */
+  @media (min-width: 992px) and (max-width: 1200px) {
+    .airbnb-search {
+      max-width: 240px;
+    }
+    .airbnb-search span {
+      padding: 0 6px;
+      font-size: 0.75rem;
+    }
+  }
+
+  /* ── Collapsed (mobile / narrow) ── */
+  @media (max-width: 991.98px) {
+    .search-wrapper {
+      padding: 8px 0;
+    }
+    .airbnb-search {
+      max-width: 100%;
+      border-radius: 12px;
+      padding: 6px 8px;
+    }
+    /* Hide labels in collapsed state — just show the button */
+    .airbnb-search span,
+    .airbnb-search .divider {
+      display: none;
+    }
+    .search-icon {
+      border-radius: 8px;
+      width: auto;
+      height: auto;
+      padding: 6px 16px;
+      gap: 6px;
+      font-size: 0.85rem;
+    }
+    .search-icon::after {
+      content: "Search";
+    }
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+  <div class="container-fluid">
+
+    <!-- LOGO -->
+    <a class="navbar-brand d-flex align-items-center gap-2 text-dark" href="/listings">
+      <i class="fa-regular fa-compass"></i>
+      <span>WanderLust</span>
+    </a>
+
+    <!-- TOGGLER -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+
+      <!-- LEFT -->
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <!-- CENTER SEARCH -->
+      <div class="search-wrapper">
+        <form class="airbnb-search">
+          <span>Anywhere</span>
+          <div class="divider"></div>
+          <span>Any week</span>
+          <div class="divider"></div>
+          <span class="text-muted">Add guests</span>
+          <button class="search-icon" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="navbar-nav ms-auto align-items-center flex-row flex-wrap gap-1">
+        <a class="nav-link" href="/listings/new">WanderLust your Home</a>
+        <% if (!currUser) { %>
+          <a class="nav-link" href="/signup">Sign up</a>
+          <a class="nav-link" href="/login">Log in</a>
+        <% } else { %>
+          <span class="navbar-text me-2">Hi, <%= currUser.username %></span>
+          <a class="nav-link" href="/logout">Log out</a>
+        <% } %>
+      </div>
+
+    </div>
+  </div>
+</nav>
